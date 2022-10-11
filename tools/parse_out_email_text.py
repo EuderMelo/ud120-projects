@@ -26,11 +26,17 @@ def parseOutText(f):
     if len(content) > 1:
         ### remove punctuation
         text_string = content[1].translate(str.maketrans('','',string.punctuation))
-
+        words = text_string.split(" ")
         ### project part 2: comment out the line below
-        words = text_string
-
-
+        ##words = text_string
+        word = []
+        stemmer = SnowballStemmer("english")
+        for i in words:
+            if i == "":
+                continue
+            word.append(stemmer.stem(i)) 
+            word.append(' ')    
+        words = ''.join(word)
 
         ### split the text string into individual words, stem each word,
         ### and append the stemmed word to words (make sure there's a single
@@ -43,7 +49,7 @@ def parseOutText(f):
     
 
 def main():
-    ff = open("../text_learning/test_email.txt", "r")
+    ff = open('C:/Users/euderasm/GitHub/ud120-projects/text_learning/test_email.txt', "r")
     text = parseOutText(ff)
     print(text)
 
